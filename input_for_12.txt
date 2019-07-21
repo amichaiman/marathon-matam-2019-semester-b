@@ -1,0 +1,3 @@
+Adi Refaeli 99.54 88.74 85.55
+Olga Katz 89.51 75.21
+Michael Danieli 79.59 82.22 76.55 96.00
