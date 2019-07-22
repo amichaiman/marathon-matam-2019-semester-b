@@ -28,7 +28,7 @@ int main(){
     l.head = add_node(l.head, 100);
 //    l.head = add_node(l.head, 60);
 
-    printf("symmetry count is %d\n", symmetric_count(l.head,NULL));
+    printf("symmetry count is %d\n", symmetric_count(l.head, NULL));
 
     print_tree(l.head);
 
@@ -39,21 +39,27 @@ int main(){
  *  output: number of nodes that the height of their right son's tree
  *                  is equal to the height of their left son's tree
  * */
-int symmetric_count(Node *cur_node, int *height){
+int symmetric_count(Node* cur_node, int* height) {
     if (!cur_node) {
-        *height = 0;
+        if (height) {
+            *height = 0;
+        }
         return 0;
     }
+    if (!cur_node->left && !cur_node->right) {
+        if (height) {
+            *height = 1;
+        }
+        return 1;
+    }
     int height_left, height_right;
-
-    int symmetric_count_left = symmetric_count(cur_node->left, &height_left);
-    int symmetric_count_right = symmetric_count(cur_node->right, &height_right);
+    int sym_count_left = symmetric_count(cur_node->left, &height_left);
+    int sym_count_right = symmetric_count(cur_node->right, &height_right);
 
     if (height) {
         *height = (height_left > height_right ? height_left : height_right) + 1;
     }
-
-    return symmetric_count_left + symmetric_count_right + (height_left == height_right);
+    return sym_count_left + sym_count_right + (height_left == height_right);
 }
 
 Node *add_node(Node *cur_node, int key) {
